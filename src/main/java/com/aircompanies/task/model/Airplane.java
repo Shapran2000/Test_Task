@@ -1,6 +1,8 @@
 package com.aircompanies.task.model;
 
 
+
+import javax.validation.constraints.Pattern;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,11 +12,12 @@ public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Pattern(regexp = "[A-Z][a-z]+",
+            message = "Must start with a capital letter followed by one or more lowercase letters")
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "factory_serial_number", nullable = false)
+    @Column(name = "factory_serial_number", nullable = false, unique = true)
     private long factorySerialNumber;
 
     @ManyToOne
