@@ -1,10 +1,13 @@
 package com.aircompanies.task.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
+@Data
 @Entity
 @Table(name = "flights")
 public class Flight {
@@ -18,7 +21,7 @@ public class Flight {
 
     @ManyToOne()
     @JoinColumn(name = "air_company_id")
-    private AirCompany myflight;
+    private AirCompany airCompany;
 
     @ManyToOne()
     @JoinColumn(name = "airplane_id")
@@ -45,101 +48,13 @@ public class Flight {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-
-    public Airplane getAirplane() {
-        return airplane;
-    }
-
-    public void setAirplane(Airplane airplane) {
-        this.airplane = airplane;
-    }
-
-    public String getDepartureCountry() {
-        return departureCountry;
-    }
-
-    public void setDepartureCountry(String departureCountry) {
-        this.departureCountry = departureCountry;
-    }
-
-    public String getDestinationCountry() {
-        return destinationCountry;
-    }
-
-    public void setDestinationCountry(String destinationCountry) {
-        this.destinationCountry = destinationCountry;
-    }
-
-    public long getDistance() {
-        return distance;
-    }
-
-    public void setDistance(long distance) {
-        this.distance = distance;
-    }
-
-    public LocalDateTime getEstimatedFlightTime() {
-        return estimatedFlightTime;
-    }
-
-    public void setEstimatedFlightTime(LocalDateTime estimatedFlightTime) {
-        this.estimatedFlightTime = estimatedFlightTime;
-    }
-
-    public LocalDateTime getEndedAt() {
-        return endedAt;
-    }
-
-    public void setEndedAt(LocalDateTime endedAt) {
-        this.endedAt = endedAt;
-    }
-
-    public LocalDateTime getDelayStartedAt() {
-        return delayStartedAt;
-    }
-
-    public void setDelayStartedAt(LocalDateTime delayStartedAt) {
-        this.delayStartedAt = delayStartedAt;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public FlightStatus getFlightStatus() {
-        return flightStatus;
-    }
-
-    public void setFlightStatus(FlightStatus flightStatus) {
-        this.flightStatus = flightStatus;
-    }
-
-    public AirCompany getAirCompany() {
-        return myflight;
-    }
-
-    public void setAirCompany(AirCompany myFlight) {
-        this.myflight = myFlight;
-    }
 
     @Override
     public String toString() {
         return "Flight{" +
                 "id=" + id +
                 ", flightStatus=" + flightStatus +
-                ", airCompany=" + myflight +
+                ", airCompany=" + airCompany +
                 ", airplane=" + airplane +
                 ", departureCountry='" + departureCountry + '\'' +
                 ", destinationCountry='" + destinationCountry + '\'' +

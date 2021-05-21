@@ -4,6 +4,7 @@ package com.aircompanies.task.controller;
 import com.aircompanies.task.exception.ValidationException;
 import com.aircompanies.task.model.AirCompany;
 import com.aircompanies.task.model.Flight;
+import com.aircompanies.task.model.FlightStatus;
 import com.aircompanies.task.service.AirCompanyService;
 import com.aircompanies.task.service.FlightService;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ public class FlightController {
         if (result.hasErrors()) {
             throw new ValidationException();
         }
+        flight.setFlightStatus(FlightStatus.PENDING);
         Flight newFlight = flightService.create(flight);
         return newFlight;
     }
@@ -62,9 +64,20 @@ public class FlightController {
         return flightList;
     }
 
+    @GetMapping("/find-active")
+    public List<Flight> findActiveFlight(){
+        List<Flight> flights = flightService.findAllFlightInActive();
+        return flights;
+    }
 
+    @PostMapping("/{id}/change-status")
+    public Flight changeFlightStatus(@PathVariable("id") long id ,@RequestParam("status") FlightStatus status){
+        Flight flight = flightService.readById(id);
+        return null;
+    }
 
     @GetMapping("/all")
+    @ResponseBody
     public List<Flight> getAll() {
         List<Flight> flights = flightService.getAll();
         return flights;

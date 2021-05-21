@@ -4,6 +4,7 @@ import com.aircompanies.task.exception.NullEntityReferenceException;
 import com.aircompanies.task.model.AirCompany;
 import com.aircompanies.task.repository.AirCompanyRepository;
 import com.aircompanies.task.service.AirCompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 public class AirCompanyServiceImpl implements AirCompanyService {
+
     private AirCompanyRepository airCompanyRepository;
 
     public AirCompanyServiceImpl(AirCompanyRepository airCompanyRepository) {

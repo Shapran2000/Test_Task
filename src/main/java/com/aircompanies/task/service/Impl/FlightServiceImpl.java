@@ -5,15 +5,19 @@ import com.aircompanies.task.exception.NullEntityReferenceException;
 import com.aircompanies.task.exception.ValidationException;
 import com.aircompanies.task.model.AirCompany;
 import com.aircompanies.task.model.Flight;
+import com.aircompanies.task.model.FlightStatus;
 import com.aircompanies.task.repository.FlightRepository;
 import com.aircompanies.task.service.FlightService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlightServiceImpl implements FlightService {
+
     private FlightRepository flightRepository;
 
     public FlightServiceImpl(FlightRepository flightRepository) {
@@ -64,4 +68,14 @@ public class FlightServiceImpl implements FlightService {
         }
         return flight;
     }
+
+    @Override
+    public List<Flight> findAllFlightInActive() {
+        List<Flight> flight = flightRepository.findAllInActive();
+        if (flight==null){
+            throw new ValidationException("Flight not Found!");
+        }
+        return flight;
+    }
+
 }

@@ -1,12 +1,16 @@
 package com.aircompanies.task.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Entity
-@Table(name = "airCompanies")
+@Table(name = "air_сompanies")
 public class AirCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,42 +25,13 @@ public class AirCompany {
     @Column(name = "founded_at", nullable = false)
     private LocalDateTime foundedAt;
 
-
-    @OneToMany(mappedBy = "myflight", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    @OneToMany(mappedBy = "airCompany", cascade = CascadeType.REMOVE)
     private List<Flight> myFlight;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCompanyType() {
-        return companyType;
-    }
-
-    public void setCompanyType(String companyType) {
-        this.companyType = companyType;
-    }
-
-    public LocalDateTime getFoundedAt() {
-        return foundedAt;
-    }
-
-    public void setFoundedAt(LocalDateTime foundedAt) {
-        this.foundedAt = foundedAt;
-    }
+    @JsonBackReference
+    @OneToMany(mappedBy = "myAirCompany", cascade = CascadeType.REMOVE)
+    private List<Airplane> myAirplanes;
 
     @Override
     public String toString() {

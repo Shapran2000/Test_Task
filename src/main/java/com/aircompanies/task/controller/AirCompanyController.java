@@ -4,10 +4,9 @@ package com.aircompanies.task.controller;
 import com.aircompanies.task.exception.ValidationException;
 import com.aircompanies.task.model.AirCompany;
 import com.aircompanies.task.service.AirCompanyService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +24,8 @@ public class AirCompanyController {
     }
 
 
-
-
     @PostMapping("/create")
-    public AirCompany create (@RequestBody @Validated AirCompany airCompany, BindingResult result){
+    public AirCompany create(@RequestBody @Validated AirCompany airCompany, BindingResult result) {
         if (result.hasErrors()) {
             throw new ValidationException();
         }
@@ -45,11 +42,11 @@ public class AirCompanyController {
 
     @PostMapping("/{id}/update")
     public AirCompany update(@PathVariable long id,
-                         @RequestBody @Validated AirCompany airCompany, BindingResult result) {
+                             @RequestBody @Validated AirCompany airCompany, BindingResult result) {
         if (result.hasErrors()) {
             throw new ValidationException();
         }
-         airCompanyService.update(airCompany);
+        airCompanyService.update(airCompany);
         return airCompany;
     }
 
@@ -59,12 +56,12 @@ public class AirCompanyController {
         airCompanyService.delete(id);
         return "redirect:/aircompany/all";
     }
+
     @GetMapping("/all")
-    public List<AirCompany> getAll(){
+    public List<AirCompany> getAll() {
         List<AirCompany> airCompanyList = airCompanyService.getAll();
         return airCompanyList;
     }
-
 
 
 }

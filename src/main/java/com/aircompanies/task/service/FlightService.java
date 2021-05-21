@@ -12,4 +12,6 @@ public interface FlightService {
     void delete(long id);
     List<Flight> getAll();
     List<Flight> findFlightByStatus(String status ,String name);
+    List<Flight> findAllFlightInActive();
+
 }
