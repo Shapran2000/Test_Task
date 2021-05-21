@@ -22,7 +22,8 @@ public class AirCompany {
     private LocalDateTime foundedAt;
 
 
-
+    @OneToMany(mappedBy = "myflight", cascade = CascadeType.REMOVE)
+    private List<Flight> myFlight;
 
 
     public long getId() {

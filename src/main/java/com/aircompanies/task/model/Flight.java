@@ -18,7 +18,7 @@ public class Flight {
 
     @ManyToOne()
     @JoinColumn(name = "air_company_id")
-    private AirCompany airCompany;
+    private AirCompany myflight;
 
     @ManyToOne()
     @JoinColumn(name = "airplane_id")
@@ -127,11 +127,11 @@ public class Flight {
     }
 
     public AirCompany getAirCompany() {
-        return airCompany;
+        return myflight;
     }
 
-    public void setAirCompany(AirCompany airCompany) {
-        this.airCompany = airCompany;
+    public void setAirCompany(AirCompany myFlight) {
+        this.myflight = myFlight;
     }
 
     @Override
@@ -139,7 +139,7 @@ public class Flight {
         return "Flight{" +
                 "id=" + id +
                 ", flightStatus=" + flightStatus +
-                ", airCompany=" + airCompany +
+                ", airCompany=" + myflight +
                 ", airplane=" + airplane +
                 ", departureCountry='" + departureCountry + '\'' +
                 ", destinationCountry='" + destinationCountry + '\'' +

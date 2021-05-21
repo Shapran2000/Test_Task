@@ -19,7 +19,7 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public AirCompany create(AirCompany airCompany) {
-        if(airCompany!=null){
+        if (airCompany != null) {
             return airCompanyRepository.save(airCompany);
         }
         throw new NullPointerException("AirCompany cannot be 'null'");
@@ -28,12 +28,12 @@ public class AirCompanyServiceImpl implements AirCompanyService {
     @Override
     public AirCompany readById(long id) {
         return airCompanyRepository.findById(id).orElseThrow(
-                ()->new EntityNotFoundException("AirCompany with id " + id + " not found"));
+                () -> new EntityNotFoundException("AirCompany with id " + id + " not found"));
     }
 
     @Override
     public AirCompany update(AirCompany airCompany) {
-        if(airCompany!=null){
+        if (airCompany != null) {
             readById(airCompany.getId());
             return airCompanyRepository.save(airCompany);
         }
@@ -42,7 +42,7 @@ public class AirCompanyServiceImpl implements AirCompanyService {
 
     @Override
     public void delete(long id) {
-        AirCompany airCompany= readById(id);
+        AirCompany airCompany = readById(id);
         airCompanyRepository.delete(airCompany);
     }
 
@@ -51,4 +51,8 @@ public class AirCompanyServiceImpl implements AirCompanyService {
         return airCompanyRepository.findAll();
     }
 
+    @Override
+    public AirCompany findByName(String name) {
+        return airCompanyRepository.findAirCompanyByName(name);
+    }
 }

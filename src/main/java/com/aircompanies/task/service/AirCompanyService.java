@@ -8,6 +8,7 @@ public interface AirCompanyService {
     AirCompany create(AirCompany airCompany);
     AirCompany readById(long id);
     AirCompany update(AirCompany airCompany);
+    AirCompany findByName (String name);
     void delete(long id);
     List<AirCompany> getAll();
 }

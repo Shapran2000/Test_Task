@@ -35,6 +35,8 @@ public class AirCompanyController {
         AirCompany newAirCompany = airCompanyService.create(airCompany);
         return newAirCompany;
     }
+
+
     @GetMapping("/{id}/read")
     public AirCompany read(@PathVariable long id) {
         AirCompany airCompany = airCompanyService.readById(id);
@@ -44,11 +46,10 @@ public class AirCompanyController {
     @PostMapping("/{id}/update")
     public AirCompany update(@PathVariable long id,
                          @RequestBody @Validated AirCompany airCompany, BindingResult result) {
-        AirCompany oldAirCompany = airCompanyService.readById(id);
         if (result.hasErrors()) {
             throw new ValidationException();
         }
-        airCompanyService.update(airCompany);
+         airCompanyService.update(airCompany);
         return airCompany;
     }
 

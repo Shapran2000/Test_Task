@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AirCompanyRepository extends JpaRepository<AirCompany,Long> {
+    AirCompany findAirCompanyByName(String name);
 }
