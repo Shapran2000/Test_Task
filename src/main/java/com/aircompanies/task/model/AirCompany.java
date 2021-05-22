@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,8 @@ public class AirCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Pattern(regexp = "[A-Z][a-z]+",
+            message = "Must start with a capital letter followed by one or more lowercase letters")
     @Column(name = "name")
     private String name;
 
@@ -25,13 +27,13 @@ public class AirCompany {
     @Column(name = "founded_at", nullable = false)
     private LocalDateTime foundedAt;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "airCompany", cascade = CascadeType.REMOVE)
-    private List<Flight> myFlight;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "myAirCompany", cascade = CascadeType.REMOVE)
-    private List<Airplane> myAirplanes;
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "airCompany", cascade = CascadeType.REMOVE)
+//    private List<Flight> myFlight;
+//
+////    @JsonBackReference
+//    @OneToMany(mappedBy = "myAirCompany", cascade = CascadeType.REMOVE)
+//    private List<Airplane> myAirplanes;
 
     @Override
     public String toString() {

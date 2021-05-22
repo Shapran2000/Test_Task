@@ -61,18 +61,41 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<Flight> findFlightByStatus(String status,String name)throws ValidationException{
+    public List<Flight> findFlightByStatus(String status, String name) throws ValidationException {
         List<Flight> flight = flightRepository.findByFlightStatus(status, name);
-        if (flight==null){
+        if (flight == null) {
             throw new ValidationException("Flight not Found!");
         }
         return flight;
     }
+    @Override
+    public Flight changeFlightStatus(String status, long id) {
+        Flight flight = readById(id);
+        FlightStatus eStatus = FlightStatus.valueOf(status);
+        flight.setFlightStatus(eStatus);
+
+        switch (eStatus) {
+            case DELAYED:
+                flight.setDelayStartedAt(LocalDateTime.now());
+                break;
+            case ACTIVE:
+                flight.setCreatedAt(LocalDateTime.now());
+                break;
+            case COMPLETED:
+                flight.setEndedAt(LocalDateTime.now());
+                break;
+            default:
+                break;
+        }
+        flightRepository.save(flight);
+        return flight;
+    }
+
 
     @Override
     public List<Flight> findAllFlightInActive() {
         List<Flight> flight = flightRepository.findAllInActive();
-        if (flight==null){
+        if (flight == null) {
             throw new ValidationException("Flight not Found!");
         }
         return flight;

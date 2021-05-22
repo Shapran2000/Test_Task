@@ -24,12 +24,13 @@ public class FlightController {
         this.flightService = flightService;
     }
 
-    @PostMapping("/create")
-    public Flight create(@RequestBody @Validated Flight flight, BindingResult result) {
+    @PostMapping("/{id}/create")
+    public Flight create(@PathVariable long id,@RequestBody @Validated Flight flight, BindingResult result) {
         if (result.hasErrors()) {
             throw new ValidationException();
         }
         flight.setFlightStatus(FlightStatus.PENDING);
+        flight.setAirCompany(airCompanyService.readById(id));
         Flight newFlight = flightService.create(flight);
         return newFlight;
     }
@@ -71,9 +72,9 @@ public class FlightController {
     }
 
     @PostMapping("/{id}/change-status")
-    public Flight changeFlightStatus(@PathVariable("id") long id ,@RequestParam("status") FlightStatus status){
-        Flight flight = flightService.readById(id);
-        return null;
+    public Flight changeFlightStatus(@PathVariable("id") long id ,@RequestParam("status") String status){
+        Flight flight = flightService.changeFlightStatus(status,id);
+        return flight;
     }
 
     @GetMapping("/all")
