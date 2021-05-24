@@ -37,7 +37,7 @@ public class Flight {
     private long distance;
 
     @Column(name = "estimated_flight_time")
-    private LocalDateTime estimatedFlightTime;
+    private int estimatedFlightTime;
 
     @Column(name = "ended_at")
     private LocalDateTime endedAt;
