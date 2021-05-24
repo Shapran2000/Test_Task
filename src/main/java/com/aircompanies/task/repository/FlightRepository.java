@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight,Long> {
    @Query(value = "select * from flights f\n" +
-           "inner join air_сompanies a\n" +
+           "inner join air_companies a\n" +
            "on f.air_company_id=a.id\n" +
            "where f.status=?1\n" +
            "and a.name=?2",nativeQuery = true)

@@ -42,7 +42,7 @@ public class Airplane {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Override

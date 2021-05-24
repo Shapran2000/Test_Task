@@ -25,7 +25,7 @@ public class AirplaneController {
     }
 
     @PostMapping("/{company_id}/add-airplane")
-    public Airplane addAirplane(@PathVariable("company_id") long company_id, @Validated @ModelAttribute("airplane") Airplane airplane, BindingResult result){
+    public Airplane addAirplane(@PathVariable("company_id") long company_id,  @RequestBody @Validated Airplane airplane, BindingResult result){
         if (result.hasErrors()) {
             throw new ValidationException();
         }

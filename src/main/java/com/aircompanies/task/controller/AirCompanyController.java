@@ -37,10 +37,8 @@ public class AirCompanyController {
 
     @PostMapping("/{id}/update")
     public AirCompany update(@PathVariable long id,
-                             @RequestBody @Validated AirCompany airCompany/*, BindingResult result*/) {
-/*        if (result.hasErrors()) {
-            throw new ValidationException();
-        }*/
+                             @RequestBody @Validated AirCompany airCompany) {
+
         airCompanyService.update(airCompany);
         return airCompany;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "air_сompanies")
+@Table(name = "air_companies")
 public class AirCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +27,6 @@ public class AirCompany {
     @Column(name = "founded_at", nullable = false)
     private LocalDateTime foundedAt;
 
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "airCompany", cascade = CascadeType.REMOVE)
-//    private List<Flight> myFlight;
-//
-////    @JsonBackReference
-//    @OneToMany(mappedBy = "myAirCompany", cascade = CascadeType.REMOVE)
-//    private List<Airplane> myAirplanes;
 
     @Override
     public String toString() {
