@@ -12,5 +12,5 @@ VALUES ('2014-05-24', '8', '11000', '1000', 'Boeing 737 800', '5000', 'Commercia
 
 
 
-INSERT INTO `aircompanies`.`flights` ( `departure_country`, `destination_country`, `distance`, `status`, `air_company_id`, `airplane_id`)
-VALUES ( 'Kyiv', 'Italy', '2360','PENDING', 1, 1);
+INSERT INTO `aircompanies`.`flights` ( `departure_country`, `destination_country`, `distance`,`estimated_flight_time`, `status`, `air_company_id`, `airplane_id`)
+VALUES ( 'Kyiv', 'Italy', '2360',5,'PENDING', 1, 1);
