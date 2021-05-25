@@ -15,6 +15,8 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private FlightStatus flightStatus;
